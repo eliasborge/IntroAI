@@ -91,24 +91,26 @@ def aStar(start: Node, target: Node, nodes: List[Node]):
 
 
 def main():
+    x=0
     # #Change this variable based on task
-    # task = 1
+    task = 1
+    print("hei")
 
-    # map = Map.Map_Obj(task = task)
-    # start = map.get_start_pos()
-    # target = map.get_end_goal_pos()
-    # path = map.fill_critical_positions(task=task)[3]
-    # grid = map.read_map(path)[0]
-    # startNode = None
-    # goalNode = None
-    # nodes = []
+    map = Map.Map_Obj(task = task)
+    start = map.get_start_pos()
+    target = map.get_end_goal_pos()
+    path = map.fill_critical_positions(task=task)[3]
+    grid = map.read_map(path)[0]
+    startNode = None
+    goalNode = None
+    nodes = []
 
-    # for y in range(len(grid)):
-    #     for x in range(len(grid)[0]):
-    #         node = Node(cost=grid[y][x],position=[y,x]) 
-    #         nodes.append(node)
-    #         if node.position == start:
-
+    for y in range(len(grid)):
+        for x in range(len(grid[0])):
+            node = Node(cost=grid[y][x],position=[y,x]) 
+            nodes.append(node)
+            if node.position == start:
+                y=0
 
     # Det her er et forsøk på implementasjon inspirert av en annen greie
     # Men det er ikke helt ferdig. 
@@ -120,7 +122,7 @@ def main():
 
 
 
-
-
+x=0
+main()
 
 
