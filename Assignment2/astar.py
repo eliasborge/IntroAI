@@ -125,7 +125,7 @@ def aStar(map:Map.Map_Obj):
 # Main method to make it run.
 def main():
 
-    map = Map.Map_Obj(1) # <--- Change this input number to change task
+    map = Map.Map_Obj(4) # <--- Change this input number to change task
     # x here is the end node.
     x = aStar(map)
     tracePath(x,map)
