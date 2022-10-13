@@ -139,11 +139,18 @@ class MinimaxAgent(MultiAgentSearchAgent):
         "*** YOUR CODE HERE ***"
         
         def max_value(gameState,depth):
+
+            #Sjekker spillets nåværende tilstand
             actions=gameState.getLegalActions(0)
             if len(actions)==0 or gameState.isWin() or gameState.isLose() or depth==self.depth:           
                 return(self.evaluationFunction(gameState),None)
+
+            #Prøver å implementere begge sider av minimax algoritmen. Maksimum og minimum
+            #Setter verdien til -infinity fordi vi skal finne maksimal verdi.
             w=-(float("inf"))                                                                               
             Act=None
+
+            #Leter gjennom alle tilgjengelige trekk, og finner det beste. 
             for action in actions:                                                                         
                 successorValue=min_value(gameState.generateSuccessor(0,action),1,depth)                         
                 successorValue=successorValue[0]                                                                      
@@ -152,11 +159,15 @@ class MinimaxAgent(MultiAgentSearchAgent):
             return(w,Act)
 
         def min_value(gameState,agentID,depth):
+            #Sjekker spillets nåværende tilstand
             Actions=gameState.getLegalActions(agentID)
             if len(Actions) == 0:
                 return(self.evaluationFunction(gameState),None)
+
+                #Til forskjell fra maksimum er verdien her satt til uendelig siden vi skal finne minimum
             l=float("inf")                                                                                 
             Act=None
+            #Itererer gjennom alle mulige handlinger pacman kan gjøre
             for action in Actions:
                 if(agentID !=gameState.getNumAgents() -1):
                     successorValue=min_value(gameState.generateSuccessor(agentID,action),agentID+1,depth)
@@ -180,14 +191,15 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         """
         "*** YOUR CODE HERE ***"
         def max_value(gameState,depth,a,b):
-            Actions = gameState.getLegalActions(0) # Get actions of pacman
+            #henter alle mulige handlinger
+            Actions = gameState.getLegalActions(0) 
             if len(Actions)==0 or gameState.isWin() or gameState.isLose() or depth==self.depth:
                 return (self.evaluationFunction(gameState), None)
 
             w=-(float("inf"))
             Act=None
                                                                                                             
-                                                                                                            
+            #itererer gjennom alle handlinger som er tilgjengelige                                                                                               
             for action in Actions:
                 sucsValue=min_value(gameState.generateSuccessor(0,action),1,depth,a,b)
                 sucsValue=sucsValue[0]
@@ -199,7 +211,8 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
             return (w,Act)
 
         def min_value(gameState,agentID,depth,a,b):
-            " Cases checking "
+            
+            #Sjekker tilstanden
             Actions=gameState.getLegalActions(agentID) 
             if len(Actions) == 0:
                 return (self.evaluationFunction(gameState),None)
@@ -208,6 +221,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
                                                                                                             
             l = float("inf")
             Act = None
+            #Sjekker alle handlinger og finner den mest ideelle.
             for action in Actions:
                 if (agentID == gameState.getNumAgents() - 1):
                     sucsValue = max_value(gameState.generateSuccessor(agentID,action),depth + 1,a,b)
