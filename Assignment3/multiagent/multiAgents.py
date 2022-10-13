@@ -11,6 +11,11 @@
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
 
+'''
+This code is heavily inspired by this github repository: 
+https://github.com/lzervos/Berkeley_AI-Pacman_Projects
+
+'''
 
 import math
 from util import manhattanDistance
